@@ -86,3 +86,5 @@ it('Numbers', () => {
     expect(floatNumber).to.be.closeTo(5.2, 0.1) //verifica se o número de ponto flutuante está próximo a 5.2 com a precisão de 0.1
     expect(floatNumber).to.be.above(5) //verifica se o número de ponto flutuante está acima de 5
 })
+
+// testando atualização do repositório
