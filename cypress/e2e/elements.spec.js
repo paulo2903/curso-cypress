@@ -50,5 +50,34 @@ describe('Work with basic elements', () => {
 
     })
 
+    it('Radiobutton', () => { 
+        cy.get('#formSexoFem')
+            .check()  //poderia ser o click(); mas o check() é o mais aconselhável
+            .should('be.checked')
+        
+        cy.get('#formSexoMasc')            
+            .should('not.be.checked')
+
+        cy.get("[name='formSexo']").should('have.length', 2) //valida se existem as duas radio de sexo
+        //em formSexo as aspas não são obrigatórias já que o nome do elemento não tem espaço
+    })
+
+    it('CheckBox', () => { 
+       cy.get('#formComidaPizza')
+            .check()
+            .should('be.checked')         
+    })
+
+    it('CheckBox marcar todos', () => {  
+        cy.get('[name=formComidaFavorita]')         
+            .click({multiple: true})  //parâmetro do click() para selecionar todos
+
+        //validando se todos foram selecionados
+        cy.get('#formComidaCarne').should('be.checked')
+        cy.get('#formComidaFrango').should('be.checked')
+        cy.get('#formComidaPizza').should('be.checked')
+        cy.get('#formComidaVegetariana').should('be.checked')        
+     })
+
 
 })
