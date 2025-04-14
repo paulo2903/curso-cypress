@@ -79,5 +79,19 @@ describe('Work with basic elements', () => {
         cy.get('#formComidaVegetariana').should('be.checked')        
      })
 
+     it('ComboBox', () => {  
+        cy.get('[data-test="dataEscolaridade"]')
+            .select('2o grau completo')
+            .should('have.value', '2graucomp')  //para verificação precisa ser pelo "value"
 
+            // TO DO validar as opções do combo
+     })
+
+     it.only('ComboBox multiplo', () => {       
+        cy.get('[data-testid="dataEsportes"]')
+            .select(['natacao', 'Corrida', 'nada'])  //no combo múltiplo precisamos enviar os valores do atributo value
+
+            //TO DO validar as opções selecionadas do combo múltiplo
+
+     })
 })
