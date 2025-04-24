@@ -37,5 +37,15 @@ describe('Esperas...', () => {
             .find('span')  
             .should('contain', 'Item 2')
     })
+
+    it('Uso do Timeout', () => {      
+        cy.get('#buttonDelay').click()        
+     // cy.get('#novoCampo', {timeout: 1000}).should('exist')   //alterando o timeout para 1 segundo
+             
+        cy.get('#buttonListDOM').click()
+        //cy.wait(5000) //é uma espera fixa
+        cy.get('#Lista li span', {timeout: 30000})
+            .should('contain', 'Item 2')                   
+    })
     
 })
