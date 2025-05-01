@@ -53,5 +53,16 @@ describe('Esperas...', () => {
         .click()         
         .should('have.value', '11')
     })
+
+    it('Should vs Then', () => {             
+        cy.get('#buttonListDOM').then($el => {
+            console.log($el)
+            expect($el).to.have.length(1)
+        }).and('have.id', 'buttonListDOM')
+                    /*Na linha 517 cy.get('#Lista li span').should($el => {
+	
+                usando o "then", o mesmo vai aguardar '#Lista li span'  ser finalizado para então ser executado
+                o "should" já faz a busca e fica fazendo a verificação. mostrando várias vezes no console*/
+    })
     
 })

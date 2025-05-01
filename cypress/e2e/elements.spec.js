@@ -87,7 +87,7 @@ describe('Work with basic elements', () => {
             // TO DO validar as opções do combo
      })
 
-     it.only('ComboBox multiplo', () => {       
+     it('ComboBox multiplo', () => {       
         cy.get('[data-testid="dataEsportes"]')
             .select(['natacao', 'Corrida', 'nada'])  //no combo múltiplo precisamos enviar os valores do atributo value
 
