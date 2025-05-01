@@ -7,12 +7,20 @@ describe('Cypress basics', () => {
         /*const title = cy.title()
         console.log(title)*/
 
-        cy.pause()  /*após executar o comando de visit, já executou o pause.
+        /*cy.pause()  após executar o comando de visit, já executou o pause.
         a execução fica parada até que se acione o botão de "play" */
+
+        cy.title().should('be.equal', 'Campo de Treinamento')
+        cy.title().should('contain', 'Campo')
 
         cy.title()
             .should('be.equal', 'Campo de Treinamento')
-            .and('contain', 'Campo').debug() //podemos pegar mais informações da execução
+            .and('contain', 'Campo')
+            
+        
+        cy.title().then(title => {
+            console.log(title)
+        })
     })
 
 it('Should find and interact with an element', () => {
@@ -20,5 +28,5 @@ it('Should find and interact with an element', () => {
     cy.get('buttonSimple')
     .click()
     .should('have.value', 'Obrigado!')    
-})
+    })
 })

@@ -47,5 +47,11 @@ describe('Esperas...', () => {
         cy.get('#Lista li span', {timeout: 30000})
             .should('contain', 'Item 2')                   
     })
+
+    it('Click retry', () => {
+        cy.get('#buttonCount')
+        .click()         
+        .should('have.value', '11')
+    })
     
 })
