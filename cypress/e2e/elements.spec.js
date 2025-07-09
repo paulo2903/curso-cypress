@@ -84,14 +84,33 @@ describe('Work with basic elements', () => {
             .select('2o grau completo')
             .should('have.value', '2graucomp')  //para verificação precisa ser pelo "value"
 
-            // TO DO validar as opções do combo
+            
+        cy.get('[data-test="dataEscolaridade"]')
+            .select('1graucomp')
+            .should('have.value', '1graucomp')  
+
+        cy.get('[data-test="dataEscolaridade"] option')
+            .should('have.length', 8)  //validação da quantidade de opções da combo
+         cy.get('[data-test="dataEscolaridade"] option').then($arr => {  //array que irá receber os valores da combo
+            const values = []
+            $arr.each(function(){
+                values.push(this.innerHTML)
+            })
+            expect(values).to.include.members(["1o grau incompleto", "1o grau completo", "2o grau incompleto", "2o grau completo", "Superior", "Especializacao", "Mestrado", "Doutorado"])   //as opções que queremos validar se existem na combo
+         })          
      })
 
      it('ComboBox multiplo', () => {       
         cy.get('[data-testid="dataEsportes"]')
             .select(['natacao', 'Corrida', 'nada'])  //no combo múltiplo precisamos enviar os valores do atributo value
 
-            //TO DO validar as opções selecionadas do combo múltiplo
+        cy.get('[data-testid="dataEsportes"]').then($el => {
+            expect($el.val()).to.be.deep.equal(['natacao', 'Corrida', 'nada'])
+            expect($el.val()).to.have.length(3)
+        })
 
+        cy.get('[data-testid="dataEsportes"]')
+            .invoke('val')
+            .should('eql', ['natacao', 'Corrida', 'nada'])         
      })
 })
