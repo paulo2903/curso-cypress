@@ -48,4 +48,20 @@ describe('Work with alerts', () => {
         }) 
         cy.get('#confirm').click()        
     })
+
+    it('Prompt', () => {
+        //iremos mockar o evento prompt dentro do window
+        cy.window().then(win => {
+            cy.stub(win, 'prompt').returns('42')
+        })
+
+        cy.on('window:prompt', msg => {           
+            expect(msg).to.be.equal('Era 42?')
+            return false
+        }) 
+        cy.on('window:alert', msg => {           
+            expect(msg).to.be.equal(':D')
+        })
+        cy.get('#prompt').click()        
+    })
 })
