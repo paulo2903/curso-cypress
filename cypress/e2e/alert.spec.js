@@ -25,7 +25,27 @@ describe('Work with alerts', () => {
             expect(stub.getCall(0)).to.be.calledWith('Alert Simples')      //getCall pega a chamada que foi feita a partir do stub. O zero vai pegar a primeira como em um array
             // calledWith('Alert Simples') verifica que uma chamada de método foi chamada com um parâmetro específico
             })           
+        })
+    
+    it('Confirm', () => {
+        cy.get('#confirm').click()
+        cy.on('window:confirm', msg => {           
+            expect(msg).to.be.equal('Confirm Simples')
         }) 
+        cy.on('window:alert', msg => {           
+            expect(msg).to.be.equal('Confirmado')
+        })
+    }) 
+
+        
+    it('Deny', () => {        
+        cy.on('window:confirm', msg => {           
+            expect(msg).to.be.equal('Confirm Simples')
+            return false
+        }) 
+        cy.on('window:alert', msg => {           
+            expect(msg).to.be.equal('Negado')
+        }) 
+        cy.get('#confirm').click()        
     })
-
-
+})
